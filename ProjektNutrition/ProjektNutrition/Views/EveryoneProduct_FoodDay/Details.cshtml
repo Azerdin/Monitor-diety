@@ -1,0 +1,85 @@
+﻿@model ProjektNutrition.Models.Product_FoodDay
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product_FoodDay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.caloric)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloric)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.protein)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protein)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodDay.Users_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodDay.Users_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Users_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Users_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

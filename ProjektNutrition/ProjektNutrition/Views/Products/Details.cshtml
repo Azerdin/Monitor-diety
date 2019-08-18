@@ -1,0 +1,74 @@
+﻿@model ProjektNutrition.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Produkt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nazwa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Kaloryczność
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloric)
+        </dd>
+
+        <dt>
+            Białko
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protein)
+        </dd>
+
+        <dt>
+            Węglowodane
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carb)
+        </dd>
+
+        <dt>
+            Tłuszcz
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fat)
+        </dd>
+
+        <dt>
+            Waga
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            Użytkownik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modyfikacja", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

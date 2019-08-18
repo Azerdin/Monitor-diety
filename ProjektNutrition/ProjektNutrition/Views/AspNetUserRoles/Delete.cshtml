@@ -1,0 +1,41 @@
+﻿@model ProjektNutrition.Models.AspNetUserRoles
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy napewno chcesz usunąć?</h3>
+<div>
+    <h4>Użytkonik-Rola</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nazwa roli
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetRoles.Name)
+        </dd>
+
+        <dt>
+            E-mail użytkownika
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    }
+</div>

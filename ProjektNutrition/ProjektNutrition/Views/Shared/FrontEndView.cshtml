@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body
+        {
+            color: black;
+        }
+        .product {
+            border: 1px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(182, 255, 0, 0.75);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        body {
+            background-image: url("https://wallpapertag.com/wallpaper/full/3/d/a/347141-top-white-background-hd-1920x1080-4k.jpg");
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        hr {
+            border-top: 1px solid black;
+        }
+
+        header {
+            background-image: url("https://s2.best-wallpaper.net/wallpaper/3840x2160/1808/Green-leaves-white-background_3840x2160.jpgd");
+        }
+    </style>
+    <script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Makroskładniki produktu",
+		fontSize: 21
+	},
+    data: [{
+        type: "pie",
+        startAngle: 160,
+        toolTipContent: "<b>{label}</b>: {y}%",
+        indexLabel: "{label} - {y}%",
+        dataPoints: [
+            {
+                y: @ViewBag.Protein, label: "Białko"
+            },
+            {
+                y: @ViewBag.Carb, label: "Węglowodane"
+            },
+            {
+                y: @ViewBag.Fat, label: "Tłuszcz"
+            },
+            ]
+	}]
+});
+chart.render();
+
+}
+    </script>
+</head>
+<body>
+    <header>
+        <center><h1>Health Monitor</h1></center>
+    </header>
+    <div class="navbar navbar-dark bg-dark navbar navbar-expand-md navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Posty", "Index", "EveryonePosts")</li>
+                    <li>@Html.ActionLink("BMI", "Create", "Bmi")</li>
+                    <li>@Html.ActionLink("Zapotrzebowanie kaloryczne", "Create", "Bmr")</li>
+                    <li>@Html.ActionLink("Produkty", "Index", "EveryoneCategories")</li>
+                    @if(this.User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Dni żywienia", "Index", "EveryoneFoodDays")</li>
+                    }
+                    
+                    @if (this.User.IsInRole("Administrator") || this.User.IsInRole("Dietetyk"))
+                    {
+                        <li>@Html.ActionLink("Panel administracyjny", "Index", "Posts")</li>
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; Krzysztof Tyszko</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

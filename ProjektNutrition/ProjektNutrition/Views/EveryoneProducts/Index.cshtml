@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProjektNutrition.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Produkty</h2>
+
+
+
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-3" >
+                        <div class="product">
+
+
+                            <b><center><h4>@Html.DisplayFor(modelItem => item.name)</h4></center></b>
+                            <center><p>Kaloryczność: @Html.DisplayFor(modelItem => item.caloric) kcal</p></center>
+                            <center><p>Białko: @Html.DisplayFor(modelItem => item.protein) g</p></center>
+                            <center><p>Węglowodane: @Html.DisplayFor(modelItem => item.carb) g</p></center>
+                            <center><p>Tłuszcz: @Html.DisplayFor(modelItem => item.fat) g</p></center>
+                            <center><p>@Html.ActionLink("Wybierz", "Details", new { id = item.id }) </p></center>
+                        </div>
+                    </div>
+                   
+                }
+                </div>
+
+            </div>
+

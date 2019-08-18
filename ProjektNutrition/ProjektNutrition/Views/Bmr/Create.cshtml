@@ -1,0 +1,159 @@
+﻿@model ProjektNutrition.Models.AspNetUsers
+@{
+    /**/
+
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Mężczyzna",
+        Value = "M"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Kobieta",
+        Value = "K"
+    });
+}
+@{
+    List<SelectListItem> listItems1 = new List<SelectListItem>();
+    listItems1.Add(new SelectListItem
+    {
+        Text = "Znikoma",
+        Value = "1,1"
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "Mała",
+        Value = "1,3"
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "Umiwarkowana",
+        Value = "1,5"
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "Duża",
+        Value = "1,7"
+    });
+    listItems1.Add(new SelectListItem
+    {
+        Text = "Bardzo duża",
+        Value = "2,0"
+    });
+}
+<h2>Zapotrzebowanie kaloryczne</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.Label("Wzrost", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.height, new { htmlAttributes = new { @class = "form-control", @id = "wzrost" } })
+                @Html.ValidationMessageFor(model => model.height, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Waga", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control", @id = "waga" } })
+                @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Aktywność", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("activity", listItems1, htmlAttributes: new { htmlAttributes = new { @class = "form-control", @id = "activity" } })
+                @Html.ValidationMessageFor(model => model.activity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Płeć", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("gender", listItems, htmlAttributes: new { htmlAttributes = new { @class = "form-control", @id = "gender" } })
+                @Html.ValidationMessageFor(model => model.activity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Wiek", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.birthDay, new { htmlAttributes = new { @class = "form-control", @id = "date" } })
+                @Html.ValidationMessageFor(model => model.height, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Licz" class="btn btn-default" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Licz" class="btn btn-default" onclick="calc();" />
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h2>Twoje Zapotrzebowanie kaloryczne wynosi:  @Html.DisplayFor(Model => Model.caloricDemand)</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        }
+        else
+        {
+            <h2 id="result"></h2>
+        }
+
+
+    </div>
+}
+<script>
+    function calc() {
+        var today = new Date().getFullYear();
+        var dateOfBirth = new Date(document.getElementById('date').value).getFullYear();
+        var age = today - dateOfBirth;
+
+        var waga = document.getElementById('waga').value;
+        var wzrost = document.getElementById('wzrost').value;
+        var activity = parseFloat(document.getElementById('activity').value);
+        var resultKcal = 0.0;
+
+        if (document.getElementById('gender').value == "K") {
+            resultKcal = 9.99 * waga + 6.25 * wzrost + 4.92 * age - 161;
+
+        }
+        else if (document.getElementById('gender').value == "M") {
+            resultKcal = 9.99 * waga + 6.25 * wzrost + 4.92 * age + 5;
+        }
+        resultKcal *= parseFloat(document.getElementById('activity').value);
+        var protein = 0.0;
+        var fat = 0.0;
+        var carb = 0.0;
+        protein = parseInt(15 / 100 * resultKcal / 4);
+        carb = parseInt(55 / 100 * resultKcal / 4);
+        fat = parseInt(30 / 100 * resultKcal / 9);
+        document.getElementById('result').innerHTML = "" + resultKcal + " kcal <br /> B: " + protein + " W: " + carb + " T: " + fat;
+
+    }
+
+
+
+</script>
+

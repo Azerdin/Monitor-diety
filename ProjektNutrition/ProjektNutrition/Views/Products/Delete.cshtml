@@ -1,0 +1,80 @@
+﻿@model ProjektNutrition.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy na pewno chcesz usunąć?</h3>
+<div>
+    <h4>Produkt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nazwa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Kalorycznosć
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloric)
+        </dd>
+
+        <dt>
+            Białko
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protein)
+        </dd>
+
+        <dt>
+            Węglowodane
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carb)
+        </dd>
+
+        <dt>
+            Tłuszcz
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fat)
+        </dd>
+
+        <dt>
+            Waga
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            Użytkownik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    }
+</div>

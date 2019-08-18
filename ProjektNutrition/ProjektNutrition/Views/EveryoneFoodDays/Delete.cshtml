@@ -1,0 +1,82 @@
+﻿@model ProjektNutrition.Models.FoodDay
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy na pewno chcesz usunąć?</h3>
+<div>
+    <h4>Dzień jedzenia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Data
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            Suma kalorii
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumCaloric)
+        </dd>
+
+        <dt>
+            Suma białka
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumProtein)
+        </dd>
+
+        <dt>
+            Suma węglowodanów
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumCarb)
+        </dd>
+
+        <dt>
+            Suma tłuszczy
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumFat)
+        </dd>
+
+        <dt>
+            Opis
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            Użytkownik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    }
+</div>

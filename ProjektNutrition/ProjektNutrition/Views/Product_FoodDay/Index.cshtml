@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjektNutrition.Models.Product_FoodDay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wyświetlanie</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Waga
+        </th>
+        <th>
+           Kalorie
+        </th>
+        <th>
+            Białko
+        </th>
+        <th>
+            Węglowowdane
+        </th>
+        <th>
+            Tłuszcz
+        </th>
+        <th>
+            Dzień żywienia
+        </th>
+        <th>
+            Produkt
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.caloric)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.protein)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodDay.date)
+            @Html.DisplayFor(modelItem => item.FoodDay.AspNetUsers.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.name)
+        </td>
+        <td>
+            @Html.ActionLink("Modyfikacja", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.id }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

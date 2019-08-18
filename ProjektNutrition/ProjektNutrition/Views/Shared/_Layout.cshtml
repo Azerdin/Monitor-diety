@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+
+        .product {
+            border: 1px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(182, 255, 0, 0.75);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        body {
+            background-image: url("https://wallpapertag.com/wallpaper/full/3/d/a/347141-top-white-background-hd-1920x1080-4k.jpg");
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        hr {
+            border-top: 1px solid black;
+        }
+
+        header {
+            background-image: url("https://s2.best-wallpaper.net/wallpaper/3840x2160/1808/Green-leaves-white-background_3840x2160.jpgd");
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <center><h1>Health Monitor - Panel Administracyjny</h1></center>
+    </header>
+    <div class="navbar navbar-dark bg-dark navbar navbar-expand-md navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Posty", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Użytkownicy", "Index", "AspNetUsers")</li>
+                        <li>@Html.ActionLink("Użytkownik-Rola", "Index", "AspNetUserRoles")</li>
+                        <li>@Html.ActionLink("Role", "Index", "AspNetRoles")</li>
+                        <li>@Html.ActionLink("Dni żywenia", "Index", "FoodDays")</li>
+                        <li>@Html.ActionLink("Produkty", "Index", "Products")</li>
+                        <li>@Html.ActionLink("Produkt-Dzień żywienia", "Index", "Product_FoodDay")</li>
+                        <li>@Html.ActionLink("Kategorie", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("FrontEnd", "Index", "EveryonePosts")</li>
+                    }
+                    else if (this.User.IsInRole("Dietetyk"))
+                    {
+                        <li>@Html.ActionLink("Posty", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Produkty", "Index", "Products")</li>
+                        <li>@Html.ActionLink("Kategorie", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("FrontEnd", "Index", "EveryonePosts")</li>
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; Krzysztof Tyszko</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

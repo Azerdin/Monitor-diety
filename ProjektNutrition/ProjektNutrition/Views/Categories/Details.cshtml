@@ -1,0 +1,27 @@
+﻿@model ProjektNutrition.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegółu</h2>
+
+<div>
+    <h4>Kategoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nazwa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modyfikuj", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

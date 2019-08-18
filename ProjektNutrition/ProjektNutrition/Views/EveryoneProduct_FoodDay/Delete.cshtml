@@ -1,0 +1,89 @@
+﻿@model ProjektNutrition.Models.Product_FoodDay
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product_FoodDay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.caloric)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloric)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.protein)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protein)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodDay.Users_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodDay.Users_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Users_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Users_id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

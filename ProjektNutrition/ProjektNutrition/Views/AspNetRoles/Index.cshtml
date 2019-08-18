@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProjektNutrition.Models.AspNetRoles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Wyświetlanie</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nazwa
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Modyfikacja", "Edit", new { Id=item.Id }) |
+            @Html.ActionLink("Szczegóły", "Details", new { Id = item.Id }) |
+            @Html.ActionLink("Usuń", "Delete", new { Id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

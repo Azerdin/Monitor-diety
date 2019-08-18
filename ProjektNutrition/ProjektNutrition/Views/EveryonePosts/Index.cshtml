@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProjektNutrition.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+@foreach (var item in Model)
+{
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>@Html.DisplayFor(modelItem => item.topic)</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @Html.DisplayFor(modelItem => item.content)
+            </div>
+        </div>
+    </div>
+
+}
+

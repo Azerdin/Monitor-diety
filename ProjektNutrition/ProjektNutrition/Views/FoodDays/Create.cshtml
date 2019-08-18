@@ -1,0 +1,88 @@
+﻿@model ProjektNutrition.Models.FoodDay
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Dodaj nowy dzień żywienia</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Dzień żywienia</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Użytkownik</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Users_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Users_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Data</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Suma kalorii</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sumCaloric, new { htmlAttributes = new { @class = "form-control", @value = "0", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.sumCaloric, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Suma białka</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sumProtein, new { htmlAttributes = new { @class = "form-control", @value = "0", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.sumProtein, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Suma węglowodanów</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sumCarb, new { htmlAttributes = new { @class = "form-control", @value = "0", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.sumCarb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Suma tłuszczy</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sumFat, new { htmlAttributes = new { @class = "form-control", @value = "0", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.sumFat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Opis</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @value = "-", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Powrót", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

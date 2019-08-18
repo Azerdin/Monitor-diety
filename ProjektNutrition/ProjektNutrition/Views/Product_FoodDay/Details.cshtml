@@ -1,0 +1,75 @@
+﻿@model ProjektNutrition.Models.Product_FoodDay
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Produkt-Dzień żywienia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            Kalorie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloric)
+        </dd>
+
+        <dt>
+            Białko
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.protein)
+        </dd>
+
+        <dt>
+            Węglowodane
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carb)
+        </dd>
+
+        <dt>
+            Tłuszcz
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fat)
+        </dd>
+
+        <dt>
+            Dzień żywienia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodDay.Users_id)
+        </dd>
+
+        <dt>
+            Produkt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Users_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modyfikuj", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

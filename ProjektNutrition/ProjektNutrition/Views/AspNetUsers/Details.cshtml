@@ -1,0 +1,155 @@
+﻿@model ProjektNutrition.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Użytkownik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            E-mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            E-mail potwierdzony
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+
+        <dt>
+            Hasło
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+        <dt>
+            Security Stamp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityStamp)
+        </dd>
+
+        <dt>
+            Numer telefonu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            Numer telefonu potwierdzony
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
+
+        <dt>
+            Logowanie dwu etapowe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorEnabled)
+        </dd>
+
+        <dt>
+            Data blokady
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
+
+        <dt>
+            Konto zablokowane
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
+
+        <dt>
+            Liczba odmów dostępu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
+        </dd>
+
+        <dt>
+            Nazwa użytkownika
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            Płeć
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            Data urodzenia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDay)
+        </dd>
+
+        <dt>
+            Waga
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            Wzrost
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.height)
+        </dd>
+
+        <dt>
+            BMI
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bmi)
+        </dd>
+
+        <dt>
+            Zapotrzebowanie kaloryczne
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caloricDemand)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modyfikuj", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

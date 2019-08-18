@@ -1,0 +1,109 @@
+﻿@model ProjektNutrition.Models.FoodDay
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Dzień żywienia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Data
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            Suma kalorii
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumCaloric)
+        </dd>
+
+        <dt>
+            Suma białka
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumProtein)
+        </dd>
+
+        <dt>
+            Suma węglowodanów
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumCarb)
+        </dd>
+
+        <dt>
+            Suma tłuszczy
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumFat)
+        </dd>
+
+        <dt>
+            Opis
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            Użytkownik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
+        </dd>
+        <dt>
+
+
+        </dt>
+        <dd>
+
+
+        </dd>
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <td>Nazwa</td>
+        <td>Kalorycznosc</td>
+        <td>Białko</td>
+        <td>Węglowodane</td>
+        <td>Tłuszcz</td>
+        <td>Waga</td>
+        <td>Ilość</td>
+    </tr>
+    @for (int i = 0; i < Model.Product_FoodDay.Count; i++)
+    {
+        if (Model.Product_FoodDay.ElementAt(i).FoodDay_id.Equals(Model.id))
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.name)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.caloric)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.protein)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.carb)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.fat)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).Product.weight)</td>
+                <td>@Html.DisplayFor(model => model.Product_FoodDay.ElementAt(i).count)</td>
+            </tr>
+        }
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Powrót", "Index")
+</p>

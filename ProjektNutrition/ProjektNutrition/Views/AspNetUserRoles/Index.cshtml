@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProjektNutrition.Models.AspNetUserRoles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wyświetlanie</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nazwa roli
+        </th>
+        <th>
+            Użytkownik
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetRoles.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Modyfikuj", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.id }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

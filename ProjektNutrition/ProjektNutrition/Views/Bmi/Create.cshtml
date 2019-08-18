@@ -1,0 +1,88 @@
+﻿@model ProjektNutrition.Models.AspNetUsers
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/FrontEndView.cshtml";
+}
+
+<h2>Kalkulator BMI</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.Label("Wzrost", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.height, new { htmlAttributes = new { @class = "form-control", @id = "wzrost" } })
+            @Html.ValidationMessageFor(model => model.height, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Waga", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control", @id = "waga"} })
+            @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Licz" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Licz" class="btn btn-default" onclick="calc();" />
+            </div>
+        </div>
+    }
+
+</div>
+    <div>
+        <p>Zakresy wartości BMI:</p>
+
+        <font color="#bf00ff"><p> mniej niż 16 - wygłodzenie</p></font>
+        <font color="#0040ff"><p> 16 - 16.99 - wychudzenie</p></font>
+        <font color="#00bfff"><p>17 - 18.49 - niedowaga</p></font>
+        <font color="#00ff00"><p>18.5 - 24.99 - wartość prawidłowa</p></font>
+        <font color="#ffbf00"><p>25 - 29.99 - nadwaga</p></font>
+        <font color="#ff8000"><p>30 - 34.99 - I stopień otyłości</p></font>
+        <font color="#ff0000"><p>35 - 39.99 - II stopień otyłości</p></font>
+        <font color="#b30000"><p>powyżej 40 - otyłość skrajna</p></font>
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h2>Twoje BMI wynosi:  @Html.DisplayFor(Model => Model.bmi)</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        }
+        else
+        {
+            <h2 id="result"></h2>
+        }
+
+
+    </div>
+}
+
+<script>
+    function calc() {
+        var waga = document.getElementById('waga').value;
+        var wzrost = document.getElementById('wzrost').value / 100;
+        var result = waga / (wzrost * wzrost);
+        document.getElementById('result').innerHTML = "" + result;
+    }
+
+
+
+</script>
+
